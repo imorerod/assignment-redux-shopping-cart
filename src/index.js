@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
+// import storeInstance from './modules/Store/store';
 
 // Redux
 import { createStore, combineReducers } from 'redux';
@@ -10,7 +11,7 @@ import { Provider } from 'react-redux';
 // Default set of products
 const products = [
     { name: `Marshmallow Mateys`, price: 6.98 },
-    { name: `Golden Honney O's`, price: 6.48 },
+    { name: `Golden Honey O's`, price: 6.48 },
     { name: `Frosted Flakes`, price: 3.98 },
 ];
 
@@ -25,8 +26,12 @@ const productReducer = (state = products, action) => {
 // Items in the cart, this reducer is incomplete
 const checkoutReducer = (state = [], action) => {
     // TODO: Products added to the cart
-    
-    return state;
+    if(action.type === 'PRODUCT_TO_CART') {
+        return [...state, action.payload];
+    }else if (action.type === 'CLEAR_CART'){
+        return [];
+    }
+        return state;
 };
 
 // The store is the big JavaScript Object that holds all of the information for our application
@@ -36,7 +41,6 @@ const storeInstance = createStore(
         checkoutReducer
     }),    
 );
-
 // Wrap our App in a Provider, this makes Redux available in
 // our entire application
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));

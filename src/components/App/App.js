@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 // Shorthand import, {} in import is called destructuring
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-
+import {connect} from 'react-redux';
 // Components
 import Products from '../Products/Products.js';
 import Checkout from '../Checkout/Checkout.js';
+import mapReduxStateToProps from '../../modules/Connect/connect';
 
 class App extends Component {
   render() {
@@ -32,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapReduxStateToProps)(App);

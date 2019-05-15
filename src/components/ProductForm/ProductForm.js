@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import mapReduxStateToProps from '../../modules/Connect/connect';
+import {connect} from 'react-redux';
 
 class ProductForm extends Component {
     // You will need to keep this state in this component
@@ -29,9 +31,9 @@ class ProductForm extends Component {
     addProduct = (event) => {
         event.preventDefault();
         // TODO: Dispatch here
-        this.props.addNewProduct(this.state.productToAdd);
+        this.props.dispatch({type: 'ADD_NEW_PRODUCT', payload : this.state.productToAdd});
     }
-
+  
     render() {
         return (
             <form onSubmit={this.addProduct}>
@@ -43,4 +45,4 @@ class ProductForm extends Component {
     }
 }
 
-export default ProductForm;
+export default connect(mapReduxStateToProps)(ProductForm);
