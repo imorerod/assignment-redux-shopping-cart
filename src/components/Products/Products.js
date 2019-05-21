@@ -13,7 +13,7 @@ class Products extends Component {
             { name: `Frosted Flakes`, price: 3.98 },
         ],
     }
-    
+
     addNewProduct = (product) => {
         console.log(product);
         // TODO: Switch from using local state to dispatching an action
